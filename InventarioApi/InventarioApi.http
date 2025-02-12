@@ -1,0 +1,94 @@
+@InventarioApi_HostAddress = http://localhost:5113
+
+# Autenticación de usuario
+POST {{InventarioApi_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "administrador",
+  "password": "lcc123"
+}
+
+###
+
+@Token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InVzdWFyaW8iLCJuYmYiOjE3MzkyMTQ4NDUsImV4cCI6MTczOTIxODQ0NSwiaWF0IjoxNzM5MjE0ODQ1LCJpc3MiOiJFbWlzb3JBcGlJbnZlbnRhcmlvIiwiYXVkIjoiQXVkaWVuY2lhQXBpSW52ZW50YXJpbyJ9.hfZQ_yYJo1PkzDfLMkqygL8Vs31vwec4cGbiKX9q7zI
+
+# Obtener la lista de productos
+GET {{InventarioApi_HostAddress}}/api/inventario/productos
+Accept: application/json
+Authorization: Bearer {{Token}}
+
+###
+
+# Obtener un producto específico por ID
+GET {{InventarioApi_HostAddress}}/api/inventario/productos/2
+Accept: application/json
+Authorization: Bearer {{Token}}
+
+###
+
+# Crear un nuevo producto
+POST {{InventarioApi_HostAddress}}/api/inventario/productos
+Content-Type: application/json
+Authorization: Bearer {{Token}}
+
+{
+  "nombre": "Pelota",
+  "stock": 100,
+  "fechaCreacion": "2025-02-10T00:00:00Z"
+}
+
+###
+
+# Actualizar un producto existente
+PUT {{InventarioApi_HostAddress}}/api/inventario/productos/3
+Content-Type: application/json
+Authorization: Bearer {{Token}}
+
+{
+  "id": 3,
+  "nombre": "Pelota de Tennis",
+  "stock": 101,
+  "fechaCreacion": "2025-02-10T00:00:00Z"
+}
+
+###
+
+# Eliminar un producto
+DELETE {{InventarioApi_HostAddress}}/api/inventario/productos/1
+Accept: application/json
+Authorization: Bearer {{Token}}
+
+###
+
+# Obtener todos los movimientos de inventario
+GET {{InventarioApi_HostAddress}}/api/inventario/movimientos
+Accept: application/json
+Authorization: Bearer {{Token}}
+
+###
+
+# Obtener un movimiento específico por ID
+GET {{InventarioApi_HostAddress}}/api/inventario/movimientos/1
+Accept: application/json
+Authorization: Bearer {{Token}}
+
+###
+
+# Registrar un nuevo movimiento de inventario
+POST {{InventarioApi_HostAddress}}/api/inventario/movimientos
+Content-Type: application/json
+Authorization: Bearer {{Token}}
+
+{
+  "productoId": 2,
+  "cantidad": 50,
+  "tipoMovimiento": "Entrada"
+}
+
+###
+
+# Eliminar un movimiento de inventario
+DELETE {{InventarioApi_HostAddress}}/api/inventario/movimientos/1
+Accept: application/json
+Authorization: Bearer {{Token}}
