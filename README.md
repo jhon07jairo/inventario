@@ -171,7 +171,7 @@ Ir a la pantalla de Login.
 Ingresar las credenciales:
 
 {
-  "email": "usuario",
+  "email": "administrador",
   "password": "lcc123"
 }
 
